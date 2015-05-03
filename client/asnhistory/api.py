@@ -10,10 +10,12 @@ redis_port = 6389
 
 r = None
 
+
 def __prepare():
     global r
-    r = redis.Redis(host = redis_host, port=redis_port, db=redis_db)
+    r = redis.Redis(host=redis_host, port=redis_port, db=redis_db)
     r.ping()
+
 
 def get_all_descriptions(asn):
     """
@@ -33,7 +35,7 @@ def get_all_descriptions(asn):
                 ]
     """
     all_descrs = r.hgetall(asn)
-    dates = sorted(all_descrs.keys(), reverse=True)
+    dates = sorted(list(all_descrs.keys()), reverse=True)
     to_return = []
     for date in dates:
         d = dateutil.parser.parse(date)
@@ -55,6 +57,7 @@ def get_last_description(asn):
     dates = sorted(all_descrs.keys())
     return all_descrs[dates[-1]]
 
+
 def get_last_update():
     """
         Return the last Update.
@@ -65,6 +68,7 @@ def get_last_update():
     if last_update is not None:
         return dateutil.parser.parse(last_update)
     return None
+
 
 def get_all_updates():
     """
@@ -79,4 +83,3 @@ def get_all_updates():
     for u in all_updates:
         to_return.append(dateutil.parser.parse(u))
     return to_return
-

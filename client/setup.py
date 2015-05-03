@@ -1,15 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from distutils.core import setup
-
-try:
-       from distutils.command.build_py import build_py_2to3 as build_py
-except ImportError:
-       from distutils.command.build_py import build_py
+from setuptools import setup
 
 setup(
     name='asnhistory',
-    version='1.0',
+    version='1.1',
     description='Query a redis database to access to the ASNs descriptions.',
     url='https://github.com/Rafiot/ASN-Description-History',
     author='Raphaël Vinot',
@@ -17,7 +12,17 @@ setup(
     maintainer='Raphaël Vinot',
     maintainer_email='raphael.vinot@circl.lu',
     packages=['asnhistory'],
-    cmdclass = {'build_py': build_py},
-    license='GNU GPLv3',
+    classifiers=[
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Science/Research',
+        'Intended Audience :: Telecommunications Industry',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Topic :: Security',
+        'Topic :: Internet',
+    ],
     long_description=open('README.md').read(),
-    )
+    install_requires=['redis', 'dateutils'],
+)
