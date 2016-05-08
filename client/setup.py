@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='asnhistory',
-    version='2.0',
+    version='2.0.1',
     description='Query a redis database to access to the ASNs descriptions.',
     url='https://github.com/Rafiot/ASN-Description-History',
     author='Raphaël Vinot',
@@ -23,6 +23,5 @@ setup(
         'Topic :: Security',
         'Topic :: Internet',
     ],
-    long_description=open('README.md').read(),
     install_requires=['redis', 'dateutils'],
 )
